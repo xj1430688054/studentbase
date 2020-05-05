@@ -89,6 +89,13 @@
                                <a class="J_menuItem" href="${ctx!}/admin/student/index">学生信息管理</a>
                             </li>
                      		</@shiro.hasPermission>
+                     		
+                     		  <@shiro.hasPermission name="system:classes:index">
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/classes/index">班级信息管理</a>
+                            </li>
+                      </@shiro.hasPermission>
+                      
                          <@shiro.hasPermission name="system:course:index">
                             <li>
                                 <a class="J_menuItem" href="${ctx!}/admin/course/index">课程信息管理</a>

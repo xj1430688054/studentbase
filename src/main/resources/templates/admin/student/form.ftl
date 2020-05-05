@@ -64,6 +64,21 @@
 									</select>
 								</div>
 							</div>
+							
+							<#if classes??>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">班级：</label>
+								<div class="col-sm-8">
+									<select name="classedId" class="form-control" >
+   											<#list classes as classe>
+  												<option value="${classe.id}" <#if classe.id == "${classe.cid}">selected="selected"</#if>>
+                                                    ${classe.name}  
+                                                  </option>
+  											 </#list>
+									</select>
+								</div>
+							</div>	
+							</#if>
 					
 							<div class="form-group">
 								<label class="col-sm-3 control-label">地址：</label>
@@ -73,7 +88,7 @@
 								</div>
 							</div>
 							
-							<#if !add??>
+						
 							<div class="form-group">
 								<label class="col-sm-3 control-label">宿舍：</label>
 								<div class="col-sm-8">
@@ -90,7 +105,7 @@
 									</select>
 								</div>
 							</div>	
-							</#if>
+							
 							
 							
 							

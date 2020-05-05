@@ -74,6 +74,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer> implem
 			stu.setPhone(student.getPhone());
 			stu.setEmail(student.getEmail());
 			stu.setDormitory(student.getDormitory());
+			stu.setClassedId(student.getClassedId());
 			update(stu);
 			return "";
 		}else{
@@ -118,6 +119,12 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer> implem
 	public String findDormitoryNameById(Integer id) {
 		// TODO Auto-generated method stub
 		return iStudentDao.findDormitoryNameById(id);
+	}
+
+	@Override
+	public String findClassNameById(Integer id) {
+		// TODO Auto-generated method stub
+		return iStudentDao.findClassNameById(id);
 	}
 
 

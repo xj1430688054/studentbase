@@ -75,6 +75,12 @@ public class Student extends BaseEntity{
     
     @Transient
     private String dormName;
+    
+    
+    private Integer classedId;
+    
+    @Transient
+    private String className;
 
 
 	

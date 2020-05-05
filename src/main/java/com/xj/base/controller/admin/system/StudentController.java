@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xj.base.common.JsonResult;
 import com.xj.base.controller.BaseController;
 import com.xj.base.controller.admin.LoginController;
+import com.xj.base.entity.Classes;
 import com.xj.base.entity.Course;
 import com.xj.base.entity.Student;
 import com.xj.base.entity.User;
 import com.xj.base.entity.Dormitory;
 import com.xj.base.entity.Role;
+import com.xj.base.service.IClassesService;
 import com.xj.base.service.ICourseService;
 import com.xj.base.service.IDormitoryService;
 import com.xj.base.service.IStudentService;
@@ -42,6 +44,8 @@ public class StudentController extends BaseController {
 	private IDormitoryService dormitoryService;
 	@Autowired
 	private ICourseService courseService;
+	@Autowired
+	private IClassesService classesService;
 	
 
 	
@@ -65,6 +69,7 @@ public class StudentController extends BaseController {
 		for (Student student : page) {
 			String name = studentService.findDormitoryNameById(student.getId());
 			student.setDormName(name);
+			student.setClassName(studentService.findClassNameById(student.getClassedId()));
 //			student.setDormitory(null);
 //			student.setCourses(null);
 		} 
@@ -81,6 +86,13 @@ public class StudentController extends BaseController {
 //		List<Dormitory> dormitorys = dormitoryService.findAll();
 //		map.put("dormitorys", dormitorys);
 		map.put("add", "add");
+		
+		List<Classes> classes = classesService.findAll();
+		map.put("classes", classes);
+		
+		List<Dormitory> dormitorys = dormitoryService.findAll();
+		map.put("dormitorys", dormitorys);
+		
 		return "admin/student/form";
 	}
 
@@ -92,6 +104,11 @@ public class StudentController extends BaseController {
 		
 		List<Dormitory> dormitorys = dormitoryService.findAll();
 		map.put("dormitorys", dormitorys);
+		
+		List<Classes> classes = classesService.findAll();
+		map.put("classes", classes);
+
+		
 		
 		
 		

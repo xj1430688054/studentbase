@@ -5,7 +5,7 @@
 5、系统部署：
     1）使用mysql数据库，先建立一个空数据库studentbase，最好编码使用utf-8字符集，不然会乱码。
     2）把application.properties中的数据库连接信息修改成自己数据库的连接信息。
-    3）系统时会自动创建表并且导入相关数据，修改spring.jpa.hibernate.ddl-auto默认为create，目的是让系统自动建表同时初始化相关集成数据。如果不需要自动初始化数据，可以修改/base2/src/main/resources/application.properties   18行 spring.jpa.hibernate.ddl-auto=update
+    3）系统时会自动创建表并且导入相关数据，修改spring.jpa.hibernate.ddl-auto默认为create，目的是让系统自动建表同时初始化相关集成数据。如果不需要自动初始化数据，可以修改/studentbase/src/main/resources/application.properties   18行 spring.jpa.hibernate.ddl-auto=update
 6、系统启动后，访问：127.0.0.1/admin/会自动跳转到后台登录页面。
 7、初始用户名和密码为：admin/111111。  教师：xujian/111111   学生： 10000/111111
 

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>分数管理</title>
+    <title>班级管理</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -28,11 +28,11 @@
             <div class="col-sm-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>分数管理</h5>
+                        <h5>课程管理</h5>
                     </div>
                     <div class="ibox-content">
                         <p>
-                        <@shiro.hasPermission name="system:score:add">
+                        <@shiro.hasPermission name="system:classes:add">
                         	<button class="btn btn-success " type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;添加</button>
                         </@shiro.hasPermission>
                         </p>
@@ -82,7 +82,7 @@
 			    //必须设置，不然request.getParameter获取不到请求参数
 			    contentType: "application/x-www-form-urlencoded",
 			    //获取数据的Servlet地址  
-			    url: "${ctx!}/admin/score/list",
+			    url: "${ctx!}/admin/classes/list",
 			    //表格显示条纹  
 			    striped: true,
 			    //启动分页  
@@ -112,30 +112,26 @@
 			    },
 			    //数据列
 			    columns: [{
-			        title: "分数id",
+			        title: "ID",
 			        field: "id",
 			        sortable: true
 			    },{
-			        title: "学生id",
-			        field: "sid"
+			        title: "班级",
+			        field: "name"
 			    },{
-			        title: "学生姓名",
-			        field: "stuname"
+			        title: "创建时间",
+			        field: "createTime",
+			        sortable: true
 			    },{
-			        title: "课程id",
-			        field: "cid"
-			    },{
-			        title: "课程名称",
-			        field: "coname"
-			    },{
-			        title: "课程得分",
-			        field: "score"
+			        title: "更新时间",
+			        field: "updateTime",
+			        sortable: true
 			    },{
 			        title: "操作",
 			        field: "empty",
-			        formatter: function (value, row, index) {
-                    	var operateHtml = '<@shiro.hasPermission name="system:score:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
-                    	operateHtml = operateHtml + '<@shiro.hasPermission name="system:score:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
+                    formatter: function (value, row, index) {
+                    	var operateHtml = '<@shiro.hasPermission name="system:classes:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
+                    	operateHtml = operateHtml + '<@shiro.hasPermission name="system:classes:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
                         return operateHtml;
                     }
 			    }]
@@ -145,11 +141,11 @@
         function edit(id){
         	layer.open({
         	      type: 2,
-        	      title: '分数修改',
+        	      title: '角色修改',
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/score/edit/' + id,
+        	      content: '${ctx!}/admin/classes/edit/' + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -158,11 +154,24 @@
         function add(){
         	layer.open({
         	      type: 2,
-        	      title: '分数添加',
+        	      title: '部门添加',
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/score/add',
+        	      content: '${ctx!}/admin/classes/add',
+        	      end: function(index){
+        	    	  $('#table_list').bootstrapTable("refresh");
+       	    	  }
+        	    });
+        }
+        function grant(id){
+        	layer.open({
+        	      type: 2,
+        	      title: '分配资源',
+        	      shadeClose: true,
+        	      shade: false,
+        	      area: ['893px', '600px'],
+        	      content: '${ctx!}/admin/classes/grant/'  + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -173,7 +182,7 @@
         		$.ajax({
     	    		   type: "POST",
     	    		   dataType: "json",
-    	    		   url: "${ctx!}/admin/score/delete/" + id,
+    	    		   url: "${ctx!}/admin/classes/delete/" + id,
     	    		   success: function(msg){
 	 	   	    			layer.msg(msg.message, {time: 2000},function(){
 	 	   	    				$('#table_list').bootstrapTable("refresh");

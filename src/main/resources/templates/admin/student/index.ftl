@@ -96,7 +96,7 @@
 			    //是否启用查询  
 			    search: true,
 			    //是否启用详细信息视图
-			   // detailView:true,
+			    detailView:true,
 			    detailFormatter:detailFormatter,
 			    //表示服务端请求  
 			    sidePagination: "server",
@@ -138,6 +138,9 @@
 			    },{
 			        title: "电话",
 			        field: "phone"
+			    },{
+			        title: "班级",
+			        field: "className"
 			    },{
 			        title: "出生年月",
 			        field: "birthday",
@@ -221,10 +224,12 @@
         }
         
         function detailFormatter(index, row) {
-	        var html = [];
-	        html.push('<p><b>描述:</b> ' + row.description + '</p>');
-	        return html.join('');
-	    }
+            var html = []
+            $.each(row, function (key, value) {
+              html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+            });
+            return html.join('');
+          }
     </script>
 
     

@@ -184,10 +184,12 @@
         }
         
         function detailFormatter(index, row) {
-	        var html = [];
-	        html.push('<p><b>描述:</b> ' + row.description + '</p>');
-	        return html.join('');
-	    }
+            var html = []
+            $.each(row, function (key, value) {
+              html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+            });
+            return html.join('');
+          }
     </script>
 
     

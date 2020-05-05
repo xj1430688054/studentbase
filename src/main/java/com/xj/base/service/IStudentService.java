@@ -20,6 +20,15 @@ public interface IStudentService extends IBaseService<Student, Integer>{
 	 * @return
 	 */
 	Student findByName(String name);
+	
+	/**
+	 * 
+	 * @param id id
+	 * @return
+	 */
+	String findClassNameById(Integer id);
+	
+	
 	/**
 	 * 增加或者修改用户
 	 * @param user

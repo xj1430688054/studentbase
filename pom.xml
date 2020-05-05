@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xj</groupId>
-	<artifactId>base</artifactId>
+	<artifactId>studentbase</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<!-- Inherit defaults from Spring Boot -->

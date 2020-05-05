@@ -67,7 +67,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     }
 
     public void save(Iterable<T> entitys) {
-        getBaseDao().save(entitys);
+//        getBaseDao().save(entitys);
     }
 
     @Override
